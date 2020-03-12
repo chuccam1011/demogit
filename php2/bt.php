@@ -66,7 +66,7 @@
     $mangS = array(1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37);
     foreach ($mangS as  $value) {
         if (isNguyento($value)) {
-            echo $value . ',';
+            echo $value . ' ';
         }
     }
     function isNguyento($n)
