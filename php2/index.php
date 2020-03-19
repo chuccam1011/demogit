@@ -95,8 +95,8 @@
 
     //String 
 
-    $chuoi='chuoi';
-    echo strpos($chuoi,'i').'<br>';
+    $chuoi = 'chuoi';
+    echo strpos($chuoi, 'i') . '<br>';
     echo strlen($chuoi);
     ?>
 </body>
