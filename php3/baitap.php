@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Bootstrap Example</title>
+    <title>Supcription </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -14,19 +14,19 @@
 
 <?php
 // define variables and set to empty values
-$lastnameErr = $firstnameErr = $addressErr = $MagazinesErr = $duarationErr = $paymenErr = $emailErr = $genderErr = "";
-$lastname = $firstname = $address = $Magazines = $duaration = $paymen = $email = $gender = "";
+$lastnameErr = $firstnameErr = $addressErr = $MagazinesErr = $duarationErr = $paymenErr = $genderErr = "";
+$lastname = $firstname = $address = $Magazines = $duaration = $paymen = $gender = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST["lastname "])) {
+    if (empty($_POST["lastname"])) {
         $lastnameErr = "last_name is required";
     } else {
-        $lastname = test_input($_POST["lastname "]);
+        $lastname = test_input($_POST["lastname"]);
     }
-    if (empty($_POST["firstname "])) {
+    if (empty($_POST["firstname"])) {
         $firstnameErr = "first_name is required";
     } else {
-        $firstname = test_input($_POST["firstname "]);
+        $firstname = test_input($_POST["firstname"]);
     }
 
     if (empty($_POST["gender"])) {
@@ -110,9 +110,9 @@ function test_input($data)
 
                 <div class="hoten">
                     <label for="">First Name:</label>
-                    <input type="text" name="firstname"  placeholder="Ho va"><span class="text-error"> <?php echo $firstnameErr; ?></span>
+                    <input type="text" name="firstname" placeholder="Ho va"><span class="text-error"> <?php echo $firstnameErr; ?></span>
                     <label for="">Last Name:</label>
-                    <input type="text" name="lastname"  id="" placeholder="Ten"><span class="text-error"><?php echo $lastnameErr; ?></span>
+                    <input type="text" name="lastname" id="" placeholder="Ten"><span class="text-error"><?php echo $lastnameErr; ?></span>
                 </div>
 
                 <div class="gender">
@@ -149,12 +149,94 @@ function test_input($data)
             </div>
 
             <input type="submit" value="Proses">
+            <button type="button" id="myBtn" class="btn btn-primary">Proses</button>
             <input type="reset" name="" value="Reset">
         </form>
+
+
+
+        <!-- Modal show Magazines -->
+        <div class="mt-3">
+
+            <!-- The Modal -->
+            <div class="modal fade" id="myModal">
+                <!-- Modal show Magazines -->
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Subcription Order </h4>
+                            <button type="button" class="close" data-dismiss="modal">×</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <p> Do you want to Order : <?php echo $Magazines . ' '; ?>
+                                magazines for : <?php echo $duaration; ?> </p>
+                            <p> And pay with : <?php echo $paymen . ' ?'; ?></p>
+
+
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" id="btn-huy" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            <button type="button" id="btn-info" class="btn btn-success" data-dismiss="modal">OK</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
-    <?php
-    echo $lastname . '  ' . $firstname . '  ' . $address . '  ' . $Magazines . '  ' . $duaration . '  ' . $paymen . '  ' . $gender;
-    ?>
+    <!-- 
+    Molal show Information -->
+    <div class="mt-3">
+        <!-- The Modal -->
+        <div class="modal fade" id="showInfo">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Subcription Order </h4>
+                        <button type="button" class="close" data-dismiss="modal">×</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        
+                        <p>Thanh you for very much order , we will supply as soon as possible the magazines for you to the address :</p>
+                        <?php
+                        echo 'Mr ' . $firstname . ' ' . $lastname  . '<br>' . $address;
+                        ?>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        $(document).ready(function() {
+            $("#myBtn").click(function() {
+                $("#myModal").modal();
+            });
+        });
+        $(document).ready(function() {
+            $("#btn-info").click(function() {
+                $("#showInfo").modal();
+            });
+        });
+    </script>
+
 </body>
 
 </html>
