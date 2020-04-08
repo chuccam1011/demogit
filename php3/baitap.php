@@ -70,11 +70,14 @@ function test_input($data)
 }
 ?>
 <style>
+    /* input[type=checkbox] {
+        border: 4px solid #8842d5;
+        size: 20px;
+    } */
+
     .text-error {
         color: red;
     }
-
-    .container {}
 
     .center {
         text-align: center;
@@ -101,7 +104,7 @@ function test_input($data)
     <div class="container">
 
         <h2 class="center text-success">Supcription form</h2>
-        <form action="" method="POST">
+        <form action="" onsubmit="myFunction" method="POST">
 
             <div class="personal">
                 <h3>
@@ -110,14 +113,18 @@ function test_input($data)
 
                 <div class="hoten">
                     <label for="">First Name:</label>
-                    <input type="text" name="firstname" placeholder="Ho va"><span class="text-error"> <?php echo $firstnameErr; ?></span>
+                    <input id="fistname" name="firstname" value="<?php echo $firstname; ?>" placeholder="Ho va"><span class="text-error"> <?php echo $firstnameErr; ?></span>
                     <label for="">Last Name:</label>
-                    <input type="text" name="lastname" id="" placeholder="Ten"><span class="text-error"><?php echo $lastnameErr; ?></span>
+                    <input type="text" name="lastname" value="<?php echo $lastname; ?>" id="" placeholder="Ten"><span class="text-error"><?php echo $lastnameErr; ?></span>
                 </div>
 
                 <div class="gender">
-                    <input type="radio" name="gender" value="Male" id=""><label for="">Male</label>
-                    <input type="radio" name="gender" value="FeMale" id=""><label for="">FeMale</label>
+                    <input type="radio" <?php if ($gender == "Male") {
+                                            echo 'checked';
+                                        }  ?> name="gender" value="Male" id=""><label for="">Male</label>
+                    <input type="radio" <?php if ($gender == "FeMale") {
+                                            echo 'checked';
+                                        }  ?> name="gender" value="FeMale" id=""><label for="">FeMale</label>
                     <span class="text-error"><?php echo $genderErr; ?></span>
                 </div>
 
@@ -129,9 +136,9 @@ function test_input($data)
 
             <div class="mag">
                 <h3 class="Magazines">Magazines subcription for </h3>
-                <input type="checkbox" value="TIME" name="Magazines" id=""> <label for="">TIME</label>
+                <input id="magazines" type="checkbox" value="TIME" name="Magazines" id=""> <label for="">TIME</label>
                 <input type="checkbox" value="Newsweek" name="Magazines" id=""><label for="">Newsweek</label>
-                <input type="checkbox" value="Punday" name="Magazines" id=""><label for="">Punday</label>
+                <input type="checkbox" value="Sunday" name="Magazines" id=""><label for="">Sunday</label>
                 <input type="checkbox" value="Pogue" name="Magazines" id=""><label for="">Pogue</label>
                 <input type="checkbox" value="Peple" name="Magazines" id=""><label for="">Peple</label>
                 <span class="text-error"><?php echo $MagazinesErr; ?></span>
@@ -149,7 +156,6 @@ function test_input($data)
             </div>
 
             <input type="submit" value="Proses">
-            <button type="button" id="myBtn" class="btn btn-primary">Proses</button>
             <input type="reset" name="" value="Reset">
         </form>
 
@@ -181,7 +187,7 @@ function test_input($data)
 
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                            <button type="button" id="btn-huy" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            <button type="button" id="btn-Cancel-Magazines" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                             <button type="button" id="btn-info" class="btn btn-success" data-dismiss="modal">OK</button>
                         </div>
 
@@ -207,16 +213,18 @@ function test_input($data)
 
                     <!-- Modal body -->
                     <div class="modal-body">
-                        
+
                         <p>Thanh you for very much order , we will supply as soon as possible the magazines for you to the address :</p>
                         <?php
-                        echo 'Mr ' . $firstname . ' ' . $lastname  . '<br>' . $address;
+                        echo  $firstname . ' ' . $lastname  . '<br>' . $address;
                         ?>
                     </div>
 
                     <!-- Modal footer -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+
+                        <button type="button" id="btn-Cancel-info" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
                     </div>
 
                 </div>
@@ -225,16 +233,20 @@ function test_input($data)
 
     </div>
     <script>
-        $(document).ready(function() {
-            $("#myBtn").click(function() {
-                $("#myModal").modal();
-            });
+        function myFunction() { // hiển thi modal Magazines sau khi click 
+            $("#myModal").modal();
+        }
+        $("#btn-info").click(function() {
+            $("#showInfo").modal(); // hiển thi modal infỏ sau khi click btn OK 
         });
-        $(document).ready(function() {
-            $("#btn-info").click(function() {
-                $("#showInfo").modal();
-            });
+        $("#btn-Cancel-info").click(function() { // chuyen con chỏ chuôt tại fist name
+            $("#fistname").focus();
         });
+        // $("#btn-Cancel-Magazines").click(function() { //ko focus đc vao checkbox nhé
+        //     $("#magazines").focus();
+        // });
+
+        z
     </script>
 
 </body>
