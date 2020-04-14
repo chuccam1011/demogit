@@ -53,7 +53,7 @@ if (isset($_POST['submit'])) {
 
     <form action="" method="post">
         <label for="">Nhap so SP : </label> <input type="number" name="sosp" id="">
-        <label for="">So tien thuong :</label> <input type="number" name="tienthuong" value="<?php echo $tienthuong; ?>" id="">
+        <label for="">So tien thuong :</label> <input type="number" name="tienthuong"     id="">
         <input type="submit" name="submit" value="Tinh thuong" id="">
     </form>
 

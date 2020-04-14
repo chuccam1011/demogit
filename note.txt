@@ -1,1 +1,2 @@
 MySQL : union thay cho full ounter join
+fetch in PDO  
